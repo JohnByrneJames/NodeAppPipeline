@@ -26,3 +26,9 @@ sudo cp /home/ubuntu/environment/nginx.default /etc/nginx/sites-available/defaul
 
 # finally, restart the nginx service so the new config takes hold
 sudo service nginx restart
+
+cd app
+
+pm2 kill
+
+pm2 start app.js
