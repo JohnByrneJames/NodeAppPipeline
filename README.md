@@ -7,6 +7,7 @@
 * Downloaded/ Cloned this Repository into a folder on your local machine.
 * Access to a Jenkins Server
 * Access to a EC2 Instance
+* Vagrant, OracleVM and Ruby Downloaded and properly configured on your local System. Find my guide to this [**HERE**](https://github.com/JohnByrneJames/VM_Proxy_Machine)
 
 ## What will be achieved?
 
@@ -107,9 +108,100 @@ Now go back to your GitHub Page and Refresh. You should now see the contents app
 
 **This is the video, it is a little easier if you are experienced using GitHub**
 
-![STEP1_GIF](images/How_to_add_remote_to_gitHub.gif)
+![STEP1.1_GIF](images/How_to_add_remote_to_gitHub.gif)
 
 </p>
 </details>
 
-## Step 2 - Testing
+## Step 2 - Testing VM on local machine
+
+**In order to garuntee this will work, we are going to first test this**
+
+If you haven't then go to this [**REPO**](https://github.com/JohnByrneJames/VM_Proxy_Machine) and follow the documentation to set up your VM, Vagrant and Ruby.
+
+## Step 2.1 - Power Up Machine
+
+All of the VM provisions have been prepared in advance, they are already included and properly configured in this folder. To begin the VM creation process make sure you are inside your directory again in the GitBash terminal. 
+
+The first command to enter is:
+
+```bash
+vagrant up
+```
+
+This may take a few minutes to set up depending on your machines processing power/ virtualization capabilities...
+
+_It should look something like the below (this is about a minute in after the app VM has been created)_
+
+![STEP2_GIF](images/VagrantUp_process.gif)
+
+Once that has completed, we need to test the app to see if it working.
+
+## Step 2.1 - Navigate to the App and run it
+
+Now we have started up the Virtual Machines we need to enter the virtual environment and test if the app is working. 
+
+
+<details>
+<summary> ❓ Enter Vagrant and Run NGINX server | TEXT ❗ </summary>
+<p>
+
+First lets enter the machine using `SSH`:
+
+```bash
+Vagrant SSH app
+```
+
+You should now be inside the VM, from here we need to navigate the location where we are going to run the app.
+
+```bash
+cd /home/ubuntu/app
+```
+_**Tip**: If you use the `tab` key it will auto complete the path so `ho` 🠆 `tab-press` 🠆 `home`_
+
+Now we are inside the app folder, run the following commands to install the required dependencies and then run the app so it is listening on port 3000.
+
+```bash
+# Install dependencies
+sudo npm install
+
+# Test if installed correctly
+sudo npm test
+
+# Run App
+sudo node app.js
+```
+
+_You should get these as your test results_
+
+![Vagrant](images/Step2.NPM_Tests.PNG)
+
+_After running `sudo node app.js` you should get `Your app is ready and listening on port 3000`_
+
+![Vagrant](images/Step2.NPM_Node_Up.PNG)
+
+Now we are able to connect to the NGINX server and view the two web page that we have running from our Virtual Machine.
+
+| Web Page                              | Description                                                                   |
+|---------------------------------------|-------------------------------------------------------------------------------|
+| http://development.local/             | This is the home-page                                                         |
+| http://development.local/fibonacci/10 | This will return fibonacci number at place   in 10 in the fibonacci sequence. |
+
+If this loads then you have successfully completed this step!
+
+</p>
+</details>
+
+
+<details>
+<summary> ❓ Enter Vagrant and Run NGINX server | VIDEO ❗ </summary>
+<p>
+
+**Videos are easier if you are experienced with Vagrant**
+
+![STEP2_GIF](images/VagrantUp_App.gif)
+
+If you can get the web page to load with the same contents as was shown in this Gif then you have completed this step!
+
+</p>
+</details>
