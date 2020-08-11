@@ -1,6 +1,7 @@
 # Documentation of how to set up a CICD pipeline using Jenkins and AWS.
 
-To complete this you will need the following tools/ software available:
+## Requirements
+
 * Git Bash (Linux Terminal)
 * AWS running EC2 Instance
 * Downloaded/ Cloned this Repository into a folder on your local machine.
