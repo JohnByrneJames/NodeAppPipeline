@@ -131,7 +131,7 @@ vagrant up
 
 This may take a few minutes to set up depending on your machines processing power/ virtualization capabilities...
 
-_It should look something like the below (this is about a minute in after the app VM has been created)_
+_It should look something like the image below (this is about a minute in after the app VM has been created)_
 
 ![STEP2_GIF](images/VagrantUp_process.gif)
 
@@ -205,3 +205,57 @@ If you can get the web page to load with the same contents as was shown in this 
 
 </p>
 </details>
+
+**Now that we have confirmed the App is working**
+
+We are going to turn off the VirtualMachines on our local computer to free up processing power. To do use the below commands.
+
+```bash
+vagrant halt 
+```
+
+This will close both the `app` and `db` virtual machines. If you want to double check they are down the you can use the command:
+
+```bash
+vagrant status
+```
+
+![Vagrant](images/Step2.Halt_Instances.PNG)
+
+_The virtual machines should appear as `poweroff`._
+
+
+## Step 3 - Set Up Continuous Integration with Jenkins
+
+**From this point onwards, I am going to be following the process in respect to the Automation server set up at Sparta, these can be altered to most configurations.**
+
+Firstly we need to set up a development branch, this can be easily within the same GitBash terminal we were using before. This will be the branch that we will push our code to, the integration will be done by Jenkins.
+
+Inside your GitBash terminal enter the following commands:
+
+```bash
+# Create the branch locally
+git checkout -b develop
+
+# Push branch to origin on GitHub (UpStream)
+git push --set-upstream origin develop
+```
+
+Now when we eventually set up the CI (Continuous Integration) we want to be able to change something that triggers the **Job**. So create a `.md` using:
+
+```bash
+# Create file that will change and trigger merge
+touch DevBranch.md
+
+# Enter file and make slight change
+nano DevBranch.md
+```
+
+_I simply added `this was done in the DevBranch`._
+
+_Exit the nano with `Ctrl+s` and `Ctrl+x`_
+
+![Vagrant](images/Step3_Nano_details.PNG)
+
+## Step 3.1 - Set up Jenkins Job for CI (Continuous Integration) and CD (Continuous Delivery)
+
