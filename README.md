@@ -64,7 +64,7 @@ This is how you dropdown.
 </pre>
 </details>
 
-<details>
+<details> :exclamation:
 <summary>How to Replace the Remote | VIDEO</summary> 
 <br>
 This is how you dropdown.
