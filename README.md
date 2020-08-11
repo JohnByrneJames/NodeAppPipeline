@@ -18,4 +18,50 @@ Now that you have downloaded/ cloned this Repository, open your git bash and nav
 
 ![STEP1_GIF](images/How_to_locate_folder_through_GITBASH.gif)
 
-Once inside the directory inside GitBash. You need to unlink the Remote which will be attached the repository, this will be to this Repository as I linked my own. This objective is to unlink that remote and link your own.
+_To auto complete a word use the `tab` key on your keyboard._
+
+Once inside the directory inside GitBash. You need to unlink the Remote which will be attached to this GitHubs repository. The objective is to unlink that remote and link it to a Repository you have made on your own GitHub.
+
+### Creating that Repository
+
+![GIT](images/GitHub_Step1_1.PNG)
+
+Go to your GitHub and Create a new Repository.
+
+![GIT](images/GitHub_Step1_2.PNG)
+
+Now name the Repository something appropriate so you can refer back to what it is easily in the future.
+
+![GIT](images/GitHub_Step1_3.PNG)
+
+When you create the Repo you can see there are all these instructions, we need the second one as we are using an existing Repo.
+
+Copy the `git remote add origin git@github.com:JohnByrneJames/MyNodeAppPipeline.git`.
+
+<details>
+<summary>How to Replace the Remote | TEXT</summary>
+<br>
+This is how you dropdown.
+<br><br>
+<pre>
+&lt;details&gt;
+&lt;summary&gt;How do I dropdown?&lt;&#47;summary&gt;
+&lt;br&gt;
+This is how you dropdown.
+&lt;&#47;details&gt;
+</pre>
+</details>
+
+<details>
+<summary>How to Replace the Remote | VIDEO</summary>
+<br>
+This is how you dropdown.
+<br><br>
+<pre>
+&lt;details&gt;
+&lt;summary&gt;How do I dropdown?&lt;&#47;summary&gt;
+&lt;br&gt;
+This is how you dropdown.
+&lt;&#47;details&gt;
+</pre>
+</details>
