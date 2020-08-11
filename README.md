@@ -51,7 +51,7 @@ Copy the `git remote add origin git@github.com:JohnByrneJames/MyNodeAppPipeline.
 **If you need help replacing the remote in git use below dropdowns**
 
 <details>
-<summary>How to Replace the Remote | TEXT ❗</summary>
+<summary> ❓ How to Replace the Remote | TEXT ❗</summary>
 <br>
 This is how you dropdown.
 <br><br>
@@ -65,7 +65,7 @@ This is how you dropdown.
 </details>
 
 <details>
-<summary>How to Replace the Remote | VIDEO ❗</summary> 
+<summary> ❓ How to Replace the Remote | VIDEO ❗</summary> 
 <br>
 This is how you dropdown.
 <br><br>
