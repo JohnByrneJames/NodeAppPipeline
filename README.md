@@ -28,7 +28,7 @@ Once inside the directory inside GitBash. You need to unlink the Remote which wi
 
 <details>
 <summary>How to create a Repository on GitHub</summary> 
-<pre>
+<p>
 
 
 ![GIT](images/GitHub_Step1_1.PNG)
@@ -45,7 +45,7 @@ When you create the Repo you can see there are all these instructions, we need t
 
 Copy the `git remote add origin git@github.com:JohnByrneJames/MyNodeAppPipeline.git`.
 
-</pre>
+</p>
 </details>
 
 **If you need help replacing the remote in git use below dropdowns**
@@ -77,3 +77,6 @@ This is how you dropdown.
 &lt;&#47;details&gt;
 </pre>
 </details>
+
+scp -i ~/.ssh/DevOpsStudents.pem -r app/ ubuntu@34.244.122.160:~/app
+scp -i ~/.ssh/DevOpsStudents.pem -r environment/ ubuntu@34.244.122.160:~/environment
