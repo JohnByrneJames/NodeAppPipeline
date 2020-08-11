@@ -71,9 +71,11 @@ git remote rm origin
 By default the remote is called origin, so the last command will remove the connection to that github, if you do `git remote --v` again it should not show anything. Next we are going to add our own remote.
 
 ```bash
+## - My remote
+
 git remote add origin git@github.com:JohnByrneJames/MyNodeAppPipeline.git
 
-### - If SSH
+### - If SSH 
 
 git remote add <remote name> <github.com:<GitHubUsername>/<RepositoryName>.git 
 
@@ -91,7 +93,7 @@ git push -u origin master
 This will push the contents of your directory the GitHub, the `.gitignore` file will do all the exclusions for you. The `-u` is an optional setting that will set an upstream connection making the origin your default push location. the `origin master` part is the upstream origin, E.G. the GitHubs cloud storage.
 
 
-Now go back to your GitHub Page and Refresh you should, now see the contents appear in that Github.
+Now go back to your GitHub Page and Refresh. You should now see the contents appear in that Github, identical to the screenshot below.
 
 ![GIT](images/GitHub_Step1_4.PNG)
 
@@ -110,5 +112,4 @@ Now go back to your GitHub Page and Refresh you should, now see the contents app
 </p>
 </details>
 
-scp -i ~/.ssh/DevOpsStudents.pem -r app/ ubuntu@34.244.122.160:~/app
-scp -i ~/.ssh/DevOpsStudents.pem -r environment/ ubuntu@34.244.122.160:~/environment
+## Step 2 - Testing
