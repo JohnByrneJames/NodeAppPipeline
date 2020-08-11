@@ -1,1 +1,18 @@
-## ADDING THIS README IN THE DEVELOP BRANCH!
+# Documentation of how to set up a CICD pipeline using Jenkins and AWS.
+
+To complete this you will need the following tools/ software available:
+* Git Bash (Linux Terminal)
+* AWS running EC2 Instance
+* Downloaded/ Cloned this Repository into a folder on your local machine.
+* Access to a Jenkins Server
+* Access to a EC2 Instance
+
+## What will be achieved?
+
+The Automation of merging working code into the master branch of a version control system (Git) and Deployment of the app onto your EC2 instance. This will be done using Jenkins which is an automation server, it facilitates continuous integration and continuous delivery.
+
+## Step 1
+
+Now that you have downloaded/ cloned this Repository, open your git bash and navigate to the directory where you cloned the repositories documents.
+
+![GIF_OF_INSTRUCTION](images/How_to_locate_folder_through_GITBASH.gif)
