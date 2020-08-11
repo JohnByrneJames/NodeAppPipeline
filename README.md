@@ -53,7 +53,7 @@ This is how you dropdown.
 </details>
 
 <details>
-<summary>How to Replace the Remote | VIDEO</summary>
+<summary>How to Replace the Remote | VIDEO</summary> **VIDEO**
 <br>
 This is how you dropdown.
 <br><br>
