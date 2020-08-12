@@ -224,7 +224,7 @@ vagrant status
 
 _The virtual machines should appear as `poweroff`._
 
-## Step 3 - Set Up Continuous Integration with Jenkins
+## Step 3 - Set up EC2 Instance on AWS
 
 **We are now going to be setting up our EC2 Machine on Amazon Web Services**
 
