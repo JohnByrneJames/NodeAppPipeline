@@ -325,5 +325,71 @@ _Exit the nano with `Ctrl+s` and `Ctrl+x`_
 ### Overview:
 
 * **CI Job** - Get code from develop branch, merge it into the master branch if it is a success and all the tests pass. This then triggers the next job...
-* **CD Job** - Copy over the `app` and `environment` into the EC2 instance using `SCP` and then SSH into the machine and run the provisions to up the web server. We will change the image of the Welcome page, using this automation pipeline we will set up!
+* **CD Job** - This job will Copy over the `app` and `environment` into the EC2 instance using `SCP` and then SSH into the machine and run the provisions to up the web server. We will change the image of the Welcome page, using this automation pipeline to visually identify changes.
+
+### Creating CI Job
+
+<details>
+<summary> ❓ Creating the CI Job | TEXT ❗ </summary> 
+<p>
+
+Once logged into your Jenkins, click `New item` at the top of the page.
+
+**Job Configuration**
+1. **Freestyle project**
+2. **Enter an item name**, you can follow any naming convention, but end with CI for continuous integration.
+
+_This is how it should look._
+
+![Vagrant](images/Step4_Jenkins_1)
+
+Once you have created the Job, you need to configure it. In order to make this stage of the setup easier to follow, refer to the table below.
+
+_Any configurations that are left out were left default_
+
+| **GENERAL**                              | -                                                                                                                               |
+|------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------|
+| Description                              | Anything can go here, describing the job and its course of action for others to see.                                            |
+| Discard old Builds                       | **Ticked**                                                                                                                      |
+| _Strategy_                               | Log Rotation                                                                                                                    |
+| _Max # of builds to keep_                | 2                                                                                                                               |
+| GitHub project                           | **Ticked**                                                                                                                      |
+| _Project URL_                            | URL of GitHub Repository http:<github.com>/<username>/<GitHub Repo>/                                                            |
+| **Office 365 Connector**                 | - SKIP THIS FOR NOW -                                                                                                           |
+| _Restrict where this project can be run_ | sparta-ubuntu-node (EC2 Instance to run test)                                                                                   |
+| **Source Code Management**               | -                                                                                                                               |
+| Git                                      | **Ticked**                                                                                                                      |
+| _Repository URL_                         | Either SSH or HTTPS Link to the Repository **Include** Credentials for SSH (private key)                                        |
+| _branches to build_                      | Branch Specifier */dev* (This * is a wildcard in Regex, it reads from all development branches) In our case the develop branch. |
+| **Build Triggers**                       | -                                                                                                                               |
+| GitHub hook trigger for GITScm polling   | **Ticked**                                                                                                                      |
+| **Build Environment**                    | -                                                                                                                               |
+| Provide Node & npm bin/ folder to PATH   | **Ticked**                                                                                                                      |
+| _NodeJS Installation_                    | Sparta-Node-JS, here is where you set up the Node JS installation path (Not important)                                          |
+| **Build**                                | -                                                                                                                               |
+| **Click** Add build step                 | **Select** Execute Shell  Insert the following: ``` cd app npm install npm test  ```                                            |
+| **Post-Build Actions**                   | -                                                                                                                               |
+| **Click** Add post-build action          | **Select** Git Publisher                                                                                                        |
+| _Push Only if Build succeeds_            | **Ticked**                                                                                                                      |
+| _Merge Results_                          | **Ticked**                                                                                                                      |
+| _Branches_                               | **Branch to Push** : master  (master branch in our Repo)  **Target remote name** : origin  (our remote name)                    |
+| **Apply** and **Save**                   | -                                                                                                                               |
+
+This is the CI Job set up and ready to be used. It should now be linked to the Repository we recently made. Now you are ready for the next step.
+
+</p>
+</details>
+
+<details>
+<summary> ❓ Creating the CI Job | VIDEO ❗ </summary> 
+<p>
+
+**This is the video, it is a little easier if you are experienced using GitHub**
+
+![STEP1.1_GIF](images/How_to_add_remote_to_gitHub.gif)
+
+</p>
+</details>
+
+
 
