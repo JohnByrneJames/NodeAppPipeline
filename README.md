@@ -137,7 +137,7 @@ _It should look something like the image below (this is about a minute in after 
 
 Once that has completed, we need to test the app to see if it working.
 
-## Step 2.1 - Navigate to the App and run it
+## Step 2.2 - Navigate to the App and run it
 
 Now we have started up the Virtual Machines we need to enter the virtual environment and test if the app is working. 
 
@@ -224,8 +224,69 @@ vagrant status
 
 _The virtual machines should appear as `poweroff`._
 
-
 ## Step 3 - Set Up Continuous Integration with Jenkins
+
+**We are now going to be setting up our EC2 Machine on Amazon Web Services**
+
+This is the machine where your App will be hosted and can be connected to via **SSH** in your local GitHub Bash terminal once you have correctly set up the Instance along with any necessary Security groups to allow your IP through.
+
+First Navigate to EC2 under **Services** and **EC2**, from there click the button that says **Launch Instance**.
+
+### Choose AMI
+
+Here you want to choose a AMI that is identical to the version of your setup, in this case our we need **Ubuntu Server 16.04**
+
+
+![AWS](images/Step3_AWS_1.PNG)
+
+
+### Choose an Instance Type
+
+Now we need to choose an instance type, we are going to go for a small EC2 as we are only running a small web app.
+
+![AWS](images/Step3_AWS_2.PNG)
+
+
+### Configure Instance
+
+On This tab you need to configure you instance in terms of its networking behaviour. To keep it simple I simply added the network, subnet and Enabled auto assignment of IP for myself.
+
+![AWS](images/Step3_AWS_3.PNG)
+
+
+### Add Storage
+
+Simply Skip this step and move to **Add Tags**.
+
+_This is how mine looked_
+
+![AWS](images/Step3_AWS_4.PNG)
+
+### Add Tags
+
+This Section is where you can add associations with your EC2 Instance so it can be easily located by yourself. 
+
+**<Stream>.<Name>.<EC2_Purpose>**
+
+![AWS](images/Step3_AWS_5.PNG)
+
+
+### Configure Security Group
+
+This section is where we set the security group of our EC2 instance, this is like the firewall of that instance. It will decide who is allowed in and out of the machine.
+
+**This can be set up however you want but this is how mine looked** _With my IP scribbled out_
+
+![AWS](images/Step3_AWS_6.PNG)
+
+### Review
+
+This last step is where you review all the configuration you have made and confirm it. You also need to add a key pair E.G. the **SSH** key pair that is needed to enter the instance. You can generate one or use one that is generated in your list. I am using the **DevOpsStudent** one for now as I have the private key on my system.
+
+**The EC2 Instance should now be ready!!** It should appear in the running instances under the **EC2** services. Make sure it is running and you are done with this step.
+
+
+## Step 4 - Set Up Continuous Integration with Jenkins
 
 **From this point onwards, I am going to be following the process in respect to the Automation server set up at Sparta, these can be altered to most configurations.**
 
@@ -257,5 +318,5 @@ _Exit the nano with `Ctrl+s` and `Ctrl+x`_
 
 ![Vagrant](images/Step3_Nano_details.PNG)
 
-## Step 3.1 - Set up Jenkins Job for CI (Continuous Integration) and CD (Continuous Delivery)
+## Step 4.1 - Set up Jenkins Job for CI (Continuous Integration) and CD (Continuous Delivery)
 
