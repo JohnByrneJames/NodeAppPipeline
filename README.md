@@ -322,3 +322,8 @@ _Exit the nano with `Ctrl+s` and `Ctrl+x`_
 
 ## Step 4.1 - Set up Jenkins Job for CI (Continuous Integration) and CD (Continuous Delivery)
 
+### Overview:
+
+* **CI Job** - Get code from develop branch, merge it into the master branch if it is a success and all the tests pass. This then triggers the next job...
+* **CD Job** - Copy over the `app` and `environment` into the EC2 instance using `SCP` and then SSH into the machine and run the provisions to up the web server. We will change the image of the Welcome page, using this automation pipeline we will set up!
+
