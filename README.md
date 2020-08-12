@@ -583,7 +583,7 @@ nano index.ejs
 
 I want to add this image to my new welcome page.
 
-![Image_of_NANO_welcome_page_change](images/https://www.designyourway.net/blog/wp-content/uploads/2018/08/387011_3d-cute-wallpapers-for-desktop-hd-1-jpg_1024x768_h-700x525.jpg)
+![Image_of_NANO_welcome_page_change](https://www.designyourway.net/blog/wp-content/uploads/2018/08/387011_3d-cute-wallpapers-for-desktop-hd-1-jpg_1024x768_h-700x525.jpg)
 
 Now change this line with your own custom **HTTP** url of an image.
 
