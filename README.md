@@ -384,9 +384,59 @@ This is the CI Job set up and ready to be used. It should now be linked to the R
 <summary> ❓ Creating the CI Job | VIDEO ❗ </summary> 
 <p>
 
+This video will give you a more Visual observation of the finished configraution of the Job.
+
+![STEP4_GIF](images/Step4_Jenkins_CI.gif)
+
+This is the CI Job set up and ready to be used. It should now be linked to the Repository we recently made. Now you are ready for the next step.
 
 </p>
 </details>
 
+## Step 4.2 - Set Up WebHook between GitHub Repository and Jenkins Automation Server
+
+Now we are going to link the Job we just created to our GitHub using a **webhook**. A webhook is a custom callback or sometimes referred to as a Reverse API. It essentially tells the Job on Jenkins to build whenever it detects a change being pushed to the repository.
+
+In this case the Job will start to build and if the tests it runs are successful it will then automatically **INTEGRATE**/**MERGE** the development branch it is monitoring into the master branch.
 
 
+<details>
+<summary> ❓ Setting up a WebHook | TEXT ❗ </summary> 
+<p>
+
+The first thing you need to do is navigate to your Directory and locate the webhooks setting.
+
+![WebHook_SetUp](images/STEP4_WH_1.PNG)
+
+Then Go into the _Webhooks_ tab on the right hand side
+
+![WebHook_SetUp](images/STEP4_WH_2.PNG)
+
+Add a new webhook
+
+![WebHook_SetUp](images/STEP4_WH_3.PNG)
+
+**Configuration**
+* You need to add the IP of your Jenkins server followed by `/github-webhook/`
+* Content Type does not matter but I prefer **JSON**
+* >> **Update Webhook** <<
+
+![WebHook_SetUp](images/STEP4_WH_4.PNG)
+
+When added, you should get a small green tick when you view it in the webhooks tab again. This means the webhook got a successful response when trying to ping the Jenkins automation server.
+
+![WebHook_SetUp](images/STEP4_WH_5.PNG)
+
+</p>
+</details>
+
+<details>
+<summary> ❓ Setting Up a WebHook | VIDEO ❗ </summary> 
+<p>
+	
+![STEP4_GIF](images/WebHook_setup.gif)
+
+This is the webhook set up and ready to go!
+
+</p>
+</details>
