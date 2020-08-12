@@ -341,7 +341,7 @@ Once logged into your Jenkins, click `New item` at the top of the page.
 
 _This is how it should look._
 
-![Jenkins](images/Step4_Jenkins_1)
+![Jenkins](images/Step4_Jenkins_1.PNG)
 
 Once you have created the Job, you need to configure it. In order to make this stage of the setup easier to follow, refer to the table below.
 
