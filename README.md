@@ -266,7 +266,9 @@ _This is how mine looked_
 
 This Section is where you can add associations with your EC2 Instance so it can be easily located by yourself. 
 
-**<Stream>.<Name>.<EC2_Purpose>**
+```bash
+<Stream>.<Name>.<EC2_Purpose>
+```
 
 ![AWS](images/Step3_AWS_5.PNG)
 
