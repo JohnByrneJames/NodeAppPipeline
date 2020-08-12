@@ -355,20 +355,20 @@ _Any configurations that are left out were left default_
 | _Max # of builds to keep_                | 2                                                                                                                               |
 | GitHub project                           | **Ticked**                                                                                                                      |
 | _Project URL_                            | URL of GitHub Repository http:<github.com>/<username>/<GitHub Repo>/                                                            |
-| **Office 365 Connector**                 | - SKIP THIS FOR NOW -                                                                                                           |
+| **OFFICE 365 CONNECTOR**                 | - SKIP THIS FOR NOW -                                                                                                           |
 | _Restrict where this project can be run_ | sparta-ubuntu-node (EC2 Instance to run test)                                                                                   |
-| **Source Code Management**               | -                                                                                                                               |
+| **SOURCE CODE MANAGEMENT**               | -                                                                                                                               |
 | Git                                      | **Ticked**                                                                                                                      |
 | _Repository URL_                         | Either SSH or HTTPS Link to the Repository **Include** Credentials for SSH (private key)                                        |
 | _branches to build_                      | Branch Specifier */dev* (This * is a wildcard in Regex, it reads from all development branches) In our case the develop branch. |
-| **Build Triggers**                       | -                                                                                                                               |
+| **BUILD TRIGGERS**                       | -                                                                                                                               |
 | GitHub hook trigger for GITScm polling   | **Ticked**                                                                                                                      |
-| **Build Environment**                    | -                                                                                                                               |
+| **BUILD ENVIRONMENT**                    | -                                                                                                                               |
 | Provide Node & npm bin/ folder to PATH   | **Ticked**                                                                                                                      |
 | _NodeJS Installation_                    | Sparta-Node-JS, here is where you set up the Node JS installation path (Not important)                                          |
-| **Build**                                | -                                                                                                                               |
+| **BUILD**                                | -                                                                                                                               |
 | **Click** Add build step                 | **Select** Execute Shell  Insert the following: ``` cd app npm install npm test  ```                                            |
-| **Post-Build Actions**                   | -                                                                                                                               |
+| **POST-BUILD ACTIONS**                   | -                                                                                                                               |
 | **Click** Add post-build action          | **Select** Git Publisher                                                                                                        |
 | _Push Only if Build succeeds_            | **Ticked**                                                                                                                      |
 | _Merge Results_                          | **Ticked**                                                                                                                      |
