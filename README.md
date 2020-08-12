@@ -341,7 +341,7 @@ Once logged into your Jenkins, click `New item` at the top of the page.
 
 _This is how it should look._
 
-![Vagrant](images/Step4_Jenkins_1)
+![Jenkins](images/Step4_Jenkins_1)
 
 Once you have created the Job, you need to configure it. In order to make this stage of the setup easier to follow, refer to the table below.
 
@@ -384,9 +384,6 @@ This is the CI Job set up and ready to be used. It should now be linked to the R
 <summary> ❓ Creating the CI Job | VIDEO ❗ </summary> 
 <p>
 
-**This is the video, it is a little easier if you are experienced using GitHub**
-
-![STEP1.1_GIF](images/How_to_add_remote_to_gitHub.gif)
 
 </p>
 </details>
