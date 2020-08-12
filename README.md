@@ -440,3 +440,162 @@ This is the webhook set up and ready to go!
 
 </p>
 </details>
+
+
+## Step 4.3 Test CI
+
+**Now that is all set up** we want to test that it is working.
+
+**Go to your GitBash** and navigate into the Repositories terminal. Make sure you are on the develop branch using `git checkout develop`.
+
+Here you have a change you haven't added yet, which we set up earlier. Pushing this change will trigger the jenkins job.
+
+```bash
+git add .
+
+# Commit change with meaningful message
+git commit -m "message"
+
+# Push to GitHub
+git push
+```
+
+Now go to your **Jenkins Dashboard** and your Job should see the Job that has been triggered running.
+
+![WebHook_SetUp](images/TriggeringJob_1.PNG)
+
+Once it has finished Running the little status Orb should be **Blue**, this means it has passed successfully. If it is **Red** then it has failed, read the console output or go back some steps if you are getting this issue.
+
+![WebHook_SetUp](images/TriggeringJob_2.PNG)
+
+If you go back to your GitHub Repository you should now see that file you created in your **Develop** branch in your **Master** branch as it has now been merged automatically by Jenkins.
+
+## Step 5 - Setting up the Node App inside your AWS Instance
+
+First Go to AWS and locate your **EC2** Instances. Make sure it is running, click the Instance and copy its **IPv4 public IP**.
+
+![AWS_APP_SETUP](images/Setting_up_AWS_App_instance_1.PNG)
+
+Now we need to copy our `app` and `environment` folder into the instance. To do that we need to use the `scp` command like so. To connect I perform a `scp` command, then I use `-i` to send my identification, this matches with the public SSH key that was given to the Instance in my case. I then specify which folder I want to copy over and to where.
+
+```bash
+# My SCP 
+scp -i ~/.ssh/DevOpsStudents.pem -r app/ ubuntu@3.250.67.195:/home/ubuntu/
+scp -i ~/.ssh/DevOpsStudents.pem -r environment/ ubuntu@3.250.67.195:/home/ubuntu/
+
+# Copy over the App folder
+scp -i ~/.ssh/<your key> -r app/ ubuntu@<Ipv4 of your instance>:/home/ubuntu/
+
+# Copy over the App folder
+scp -i ~/.ssh/<your key> -r environment/ ubuntu@<Ipv4 of your instance>:/home/ubuntu/
+```
+
+This should copy over the two folders into your instance on AWS. Now we want to go into the instance and run the app provision.
+
+```bash
+# My SSH 
+ssh -i ~/.ssh/DevOpsStudents.pem ubuntu@54.217.53.47
+
+# SSH into the AWS web app instance
+ssh -i ~/.ssh/<your key> ubuntu@<Ipv4 of your instance>
+```
+
+**Inside the EC2** machine:
+
+```bash
+#  Go into the environment folder
+cd /home/ubuntu/environment/app
+
+# Give the provision folder permissions
+chmod +x provision.sh
+
+# Run the provision
+sudo ./provision
+
+# Go back to your app folder
+cd ..
+cd ..
+cd app
+
+# Install the Dependencies and then run the tests
+sudo npm install
+sudo npm test
+```
+
+Your app should all be working now. If you want to check then run it and view it in your browser using the **IPv4** address of your EC2 Machine. You can run it with the command `sudo node app.js`.
+
+![App_At_the_moment](images/AWS_setup_nodeapp.PNG)
+
+If you see this page, you have completed this step!!
+
+**Note**
+
+To exit the EM2 in the GitBash terminal use the shortcut `Ctrl+D`
+
+
+## Step 6 - Set up CD Job on Jenkins and change Web page to prove its working.
+
+
+<details>
+<summary> ❓ Setting up a CD Job | TEXT ❗ </summary> 
+<p>
+
+| **GENERAL**                              | -                                                                                                                                                                                                                                                                                                                                                                                                 |
+|------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Description                              | Anything can go here, describing the job and its course of action for others to see.                                                                                                                                                                                                                                                                                                              |
+| Discard old Builds                       | **Ticked**                                                                                                                                                                                                                                                                                                                                                                                        |
+| _Strategy_                               | Log Rotation                                                                                                                                                                                                                                                                                                                                                                                      |
+| _Max # of builds to keep_                | 2                                                                                                                                                                                                                                                                                                                                                                                                 |
+| GitHub project                           | **Ticked**                                                                                                                                                                                                                                                                                                                                                                                        |
+| _Project URL_                            | URL of GitHub Repository http:<github.com>/<username>/<GitHub Repo>/                                                                                                                                                                                                                                                                                                                              |
+| **Office 365 Connector**                 | - SKIP THIS FOR NOW -                                                                                                                                                                                                                                                                                                                                                                             |
+| _Restrict where this project can be run_ | sparta-ubuntu-node (EC2 Instance to run test)                                                                                                                                                                                                                                                                                                                                                     |
+| **Source Code Management**               | -                                                                                                                                                                                                                                                                                                                                                                                                 |
+| Git                                      | **Ticked**                                                                                                                                                                                                                                                                                                                                                                                        |
+| _Repository URL_                         | Either SSH or HTTPS Link to the Repository **Include** Credentials for SSH (private key)                                                                                                                                                                                                                                                                                                          |
+| _branches to build_                      | Branch Specifier */master (This * is a wildcard in Regex, it reads from all development branches) In our case the develop branch.                                                                                                                                                                                                                                                                 |
+| **Build Triggers**                       | -                                                                                                                                                                                                                                                                                                                                                                                                 |
+| Build after other projecst are built     | **Project to watch** : <name of CI Job>  Trigger only if build is stable : **Ticked**                                                                                                                                                                                                                                                                                                             |
+| **Build Environment**                    | -                                                                                                                                                                                                                                                                                                                                                                                                 |
+| SSH Agent                                | **SSH** Credentials                                                                                                                                                                                                                                                                                                                                                                               |
+| **Build**                                | -                                                                                                                                                                                                                                                                                                                                                                                                 |
+| **Click** Add build step                 | **Select** Execute Shell  Insert the following: ```scp -o "StrictHostKeyChecking=no" -r app/ ubuntu@<Ipv4 of EM2>:/home/ubuntu/ scp -o "StrictHostKeyChecking=no" -r environment/ ubuntu@<Ipv4 of EM2>:/home/ubuntu/environment ssh -o "StrictHostKeyChecking=no" ubuntu@<Ipv4 of EMC> <<EOF          sudo bash ./environment/app/provision.sh  # Rerun provision to update welcome page EOF  ``` |
+| **Apply** and **Save**                   | -                                                                                                                                                                                                                                                                                                                                                                                                 |
+
+This is the configuration of the CD Job it will be automatically triggered by the CI Job and update the Web Pages welcome page via automating the **SSH** process we previously did manually.
+
+</p>
+</details>
+
+**Now we need to test the App and see if it is working**
+
+For that you are going to have to go back to your GitBash and make a change to your Welcome page.
+
+To do this we are going to navigate to the file and change it to a custom image file. 
+
+```bash
+# navigate to the views folder
+cd app/views/
+
+# Nano into index and change it with a custom image url from google
+nano index.ejs
+```
+
+I want to add this image to my new welcome page.
+
+![Image_of_NANO_welcome_page_change](images/https://www.designyourway.net/blog/wp-content/uploads/2018/08/387011_3d-cute-wallpapers-for-desktop-hd-1-jpg_1024x768_h-700x525.jpg)
+
+Now change this line with your own custom **HTTP** url of an image.
+
+![Image_of_NANO_welcome_page_change](images/Change_image.PNG)
+
+```bash
+# Now push the changes and it should trigger the jobs
+git add .
+git commit -m "message"
+git push
+```
+
+**Once the jobs have been completed** navigate back to the page of your EM2 NGINX instance, using your **IPv4** address. This should be change like mine has below.
+
+![Image_of_NANO_welcome_page_change](images/Change_image2.PNG)
