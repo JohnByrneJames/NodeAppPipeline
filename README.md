@@ -419,7 +419,7 @@ Add a new webhook
 **Configuration**
 * You need to add the IP of your Jenkins server followed by `/github-webhook/`
 * Content Type does not matter but I prefer **JSON**
-* >> **Update Webhook** <<
+* Select **Add Webhook** 
 
 ![WebHook_SetUp](images/STEP4_WH_4.PNG)
 
@@ -433,7 +433,7 @@ When added, you should get a small green tick when you view it in the webhooks t
 <details>
 <summary> ❓ Setting Up a WebHook | VIDEO ❗ </summary> 
 <p>
-	
+
 ![STEP4_GIF](images/WebHook_setup.gif)
 
 This is the webhook set up and ready to go!
